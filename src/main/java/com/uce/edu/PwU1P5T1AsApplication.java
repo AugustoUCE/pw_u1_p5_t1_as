@@ -11,7 +11,7 @@ public class PwU1P5T1AsApplication implements CommandLineRunner{
 		SpringApplication.run(PwU1P5T1AsApplication.class, args);
 		
 		System.out.println("Tarea primera subida");
-		
+		System.out.println("Cambios en la misma rama ");
 	}
 
 	@Override
