@@ -14,6 +14,7 @@ public class PwU1P5T1AsApplication implements CommandLineRunner{
 		System.out.println("Cambios en la misma rama ");
 		
 		System.out.println("Nueva rama con cambios");
+		System.out.println("Cambios en la nueva rama tareaNewRama");
 	}
 
 	@Override
