@@ -1,6 +1,8 @@
 package com.uce.edu.repository.modelo;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class Materia {
 	
 	private String nombre;
@@ -29,5 +31,4 @@ public class Materia {
 		return "Materia [nombre=" + nombre + ", codigo=" + codigo + ", numeroCreditos=" + numeroCreditos + "]";
 	}
 	
-
 }
