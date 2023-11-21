@@ -15,10 +15,13 @@ import com.uce.edu.service.IMateriaService;
 public class Pa2U1P5AsApplication implements CommandLineRunner{
 
 	@Autowired
-	private IMateriaService materiaService;
-	@Autowired
 	private Materia materia;
+	
+	@Autowired
+	private Materia materia1;
 
+	@Autowired
+	private Materia materia2;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U1P5AsApplication.class, args);
@@ -26,47 +29,20 @@ public class Pa2U1P5AsApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		this.materia.setCodigo("M1");
-		this.materia.setNombre("P.Avanzada");
-		this.materia.setNumeroCreditos(10);
+		//una sola instacnia independientemente de la inyeccion que se realice siempre voy a tener un objeto
+		this.materia.setNombre("Avanzada II");
+		System.out.println(this.materia);
+		System.out.println(this.materia1);
 		
-		this.materiaService.registrar(materia);
+		this.materia1.setNombre("Nuevo Nombre");
+		System.out.println(this.materia1);
+		System.out.println(this.materia);
 		
-		//verificar si se inserto en la list
-		System.out.println("buscar");
+		this.materia2.setNombre("Nombre final");
+		System.out.println(this.materia2);
+		System.out.println(this.materia1);
+		System.out.println(this.materia);
 
-		Materia mate = this.materiaService.buscar("M1");
-		System.out.println(mate);
-		
-		System.out.println("Inicio de reporte");
-		List<Materia> reporte=this.materiaService.buscarTodos();
-		for (Materia materia : reporte) {
-			System.out.println(materia);
-		}
-		
-		System.out.println("fin");
-		
-		
-		//actulizar el objeto
-		System.out.println("actualizar");
-
-		mate.setNumeroCreditos(20);
-		this.materiaService.actualizar(mate);
-		
-		Materia mate2=this.materiaService.buscar("M1");
-		System.out.println(mate2);
-		//borrar
-		
-		System.out.println("borrar");
-		this.materiaService.eliminar("M1");
-		mate2= this.materiaService.buscar("M1");
-		System.out.println(mate2);
-		
-		
-		//
-		
-		
 	}
 
 }
