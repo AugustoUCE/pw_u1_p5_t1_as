@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Component;
 @Component
+
 public class CuentaBancaria {
 	private String numero;
 	private String cedulaPropietario;
