@@ -12,6 +12,8 @@ public interface IMateriaService {
 		public void eliminar(String codigo);
 		public List<Materia> buscarTodos();
 
+
+
 	
 	
 

@@ -44,4 +44,7 @@ public class MateriaServiceImpl implements IMateriaService {
 		return this.materiaRepository.reporte();
 	}
 
+
+	
+
 }
