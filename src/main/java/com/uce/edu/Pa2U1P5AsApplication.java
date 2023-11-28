@@ -50,6 +50,7 @@ public class Pa2U1P5AsApplication implements CommandLineRunner {
 
 		// construir un reporte del estado de cuenta de todas las trasnferencias
 		System.out.println("\n Inicio Reporte");
+		
 		List<Transferencia> listrep = this.transferenciaService.buscarTodo();
 
 		int indice = 0;
