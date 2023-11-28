@@ -1,6 +1,8 @@
 package com.uce.edu;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -8,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.transferencia.repository.modelo.CuentaBancaria;
+import com.uce.edu.transferencia.repository.modelo.Transferencia;
 import com.uce.edu.transferencia.service.ICuentaBancariaService;
 import com.uce.edu.transferencia.service.ITransferenciaService;
 
@@ -39,16 +42,30 @@ public class Pa2U1P5AsApplication implements CommandLineRunner {
 		ctaDestino.setSaldo(new BigDecimal(200));
 		this.cuentaBancariaService.guardar(ctaDestino);
 
-		this.transferenciaService.realizar("1234", "5678", new BigDecimal(20));
-		System.out.println(ctaOrigen);
-		System.out.println(ctaDestino);
-		/*
+		this.transferenciaService.realizar("1234", "5678", new BigDecimal(40));
+		System.out.println(ctaOrigen.hashCode());
+
+		this.transferenciaService.realizar("1234", "5678", new BigDecimal(10));
+		this.transferenciaService.realizar("5678", "1234", new BigDecimal(10));
+
+		// construir un reporte del estado de cuenta de todas las trasnferencias
+		System.out.println("Inicio Reporte");
+		List<Transferencia> listrep = this.transferenciaService.buscarTodo();
+
+		int indice = 0;
+
+		for (Transferencia trans : listrep) {
+			indice++;
+			System.out.println(indice + ":" + trans);
+		}
+		System.out.println("Fin Reporte");
+
+		//Imprimir para ver la cuentas origen y destino
 		CuentaBancaria ctaOrigen1 = this.cuentaBancariaService.buscar("1234");
 		System.out.println(ctaOrigen1);
 		CuentaBancaria ctaDestino1 = this.cuentaBancariaService.buscar("5678");
 		System.out.println(ctaDestino1);
-		*/
-		
+
 	}
 
 }

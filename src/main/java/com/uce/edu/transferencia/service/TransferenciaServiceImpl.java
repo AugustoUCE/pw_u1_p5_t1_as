@@ -2,6 +2,7 @@ package com.uce.edu.transferencia.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,8 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		// solo si tengo logica de negocio ocupo la ICuentaService como no hay ocupo la
 		// ICuentaRepository
 		CuentaBancaria ctaOrigen = this.cuentaBancariaRepository.seleccionar(numeroOrigen);
+		System.out.println(ctaOrigen.hashCode());
+
 		// 2. consultar saldo
 		BigDecimal saldoOrigen = ctaOrigen.getSaldo();
 		// 3. validar el saldo
@@ -76,12 +79,42 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 			transferencia.setNumero("123123");
 			this.transferenciaRepository.insertar(transferencia);
 			System.out.println("Trasnferencia realizada con exito");
+		//	System.out.println("Su numero transferencia es:"+transferencia.getNumeroTransferencia());
 
 		} else {
 			System.out.println("Saldo no disponible");
 
 		}
 
+	}
+
+	@Override
+	public List<Transferencia> buscarTodo() {
+		// TODO Auto-generated method stub
+		return this.transferenciaRepository.reporteTodo();
+	}
+
+	@Override
+	public void depositar(String numeroOrigen, String numeroDestino, BigDecimal monto) {
+		// TODO Auto-generated method stub
+		CuentaBancaria ctaOrigen = this.cuentaBancariaRepository.seleccionar(numeroOrigen);
+		
+		BigDecimal montoO = ctaOrigen.getSaldo();
+		BigDecimal montoOF = monto.subtract(montoO);
+		ctaOrigen.setSaldo(montoOF);
+		this.cuentaBancariaRepository.actualizar(ctaOrigen);
+		//el valor que me voy a descontar
+		CuentaBancaria ctaDestino = this.cuentaBancariaRepository.seleccionar(numeroOrigen);
+
+		BigDecimal comision = monto.multiply(new BigDecimal(0.10));
+		BigDecimal montoFinal=monto.subtract(comision);
+		
+		ctaDestino.setSaldo(montoFinal);
+		this.cuentaBancariaRepository.actualizar(ctaDestino);
+
+		System.out.println("Desposito realizada con exito");
+
+		
 	}
 
 }

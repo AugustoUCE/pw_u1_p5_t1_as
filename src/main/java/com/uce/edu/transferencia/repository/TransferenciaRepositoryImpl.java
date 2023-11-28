@@ -18,6 +18,7 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository {
 		// TODO Auto-generated method stub
 		for (Transferencia transferencia : base) {
 			if (transferencia.getNumero().equals(numero)) {
+			
 				
 				return transferencia;
 			}
@@ -47,6 +48,13 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository {
 		Transferencia trans= this.seleccionar(numero);
 		base.remove(trans);
 		System.out.println("Se elimino ");
+	}
+
+	@Override
+	public List<Transferencia> reporteTodo() {
+		// TODO Auto-generated method stub
+		
+		return base;
 	}
 
 }

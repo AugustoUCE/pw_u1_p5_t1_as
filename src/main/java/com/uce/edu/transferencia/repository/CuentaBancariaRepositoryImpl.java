@@ -18,17 +18,28 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository {
 		// TODO Auto-generated method stub
 		for (CuentaBancaria cuentaBancaria : base) {
 			if (cuentaBancaria.getNumero().equals(numero)) {
-				CuentaBancaria cta = new CuentaBancaria();
+				CuentaBancaria cta=new CuentaBancaria();
+
 				cta.setCedulaPropietario(cuentaBancaria.getCedulaPropietario());
 				cta.setNumero(cuentaBancaria.getNumero());
 				cta.setSaldo(cuentaBancaria.getSaldo());
-				return cta;
+				return cuentaBancaria;
+
+			}
+				
+		}
+		return null;
+	}
+
+	public CuentaBancaria seleccionarEliminar(String numero) {
+		for (CuentaBancaria cuentaBancaria : base) {
+			if (cuentaBancaria.getNumero().equals(numero)) {
 				
 			}
 		}
 		return null;
 	}
-
+	
 	@Override
 	public void insertar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
@@ -46,7 +57,7 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository {
 	@Override
 	public void eliminar(String numero) {
 		// TODO Auto-generated method stub
-		CuentaBancaria cta=this.seleccionar(numero);
+		CuentaBancaria cta=this.seleccionarEliminar(numero);
 		base.remove(cta);
 				
 	
