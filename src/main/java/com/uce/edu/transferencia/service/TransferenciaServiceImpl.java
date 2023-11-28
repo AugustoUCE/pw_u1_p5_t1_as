@@ -76,10 +76,9 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 			transferencia.setCuentaDestino(ctaDestino);
 			transferencia.setFecha(LocalDateTime.now());
 			transferencia.setMonto(monto);
-			transferencia.setNumero("123123");
+			transferencia.setNumero(transferencia.generarNumeroSecuencial());
 			this.transferenciaRepository.insertar(transferencia);
-			System.out.println("Trasnferencia realizada con exito");
-		//	System.out.println("Su numero transferencia es:"+transferencia.getNumeroTransferencia());
+			System.out.println("Trasnferencia realizada con exito"+"Numero transferencia: "+transferencia.getNumero());
 
 		} else {
 			System.out.println("Saldo no disponible");
@@ -97,13 +96,16 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 	@Override
 	public void depositar(String numeroOrigen, String numeroDestino, BigDecimal monto) {
 		// TODO Auto-generated method stub
+		//cta origen
 		CuentaBancaria ctaOrigen = this.cuentaBancariaRepository.seleccionar(numeroOrigen);
 		
 		BigDecimal montoO = ctaOrigen.getSaldo();
 		BigDecimal montoOF = monto.subtract(montoO);
 		ctaOrigen.setSaldo(montoOF);
 		this.cuentaBancariaRepository.actualizar(ctaOrigen);
+		
 		//el valor que me voy a descontar
+		//ctadestino
 		CuentaBancaria ctaDestino = this.cuentaBancariaRepository.seleccionar(numeroOrigen);
 
 		BigDecimal comision = monto.multiply(new BigDecimal(0.10));

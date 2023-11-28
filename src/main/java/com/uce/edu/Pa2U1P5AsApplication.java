@@ -49,7 +49,7 @@ public class Pa2U1P5AsApplication implements CommandLineRunner {
 		this.transferenciaService.realizar("5678", "1234", new BigDecimal(10));
 
 		// construir un reporte del estado de cuenta de todas las trasnferencias
-		System.out.println("Inicio Reporte");
+		System.out.println("\n Inicio Reporte");
 		List<Transferencia> listrep = this.transferenciaService.buscarTodo();
 
 		int indice = 0;
@@ -58,13 +58,15 @@ public class Pa2U1P5AsApplication implements CommandLineRunner {
 			indice++;
 			System.out.println(indice + ":" + trans);
 		}
-		System.out.println("Fin Reporte");
+		System.out.println("Fin Reporte\n");
 
 		//Imprimir para ver la cuentas origen y destino
 		CuentaBancaria ctaOrigen1 = this.cuentaBancariaService.buscar("1234");
 		System.out.println(ctaOrigen1);
 		CuentaBancaria ctaDestino1 = this.cuentaBancariaService.buscar("5678");
 		System.out.println(ctaDestino1);
+		
+		
 
 	}
 
