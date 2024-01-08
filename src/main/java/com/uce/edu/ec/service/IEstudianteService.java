@@ -1,0 +1,15 @@
+package com.uce.edu.ec.service;
+
+import com.uce.edu.ec.repository.modelo.Estudiante;
+
+public interface IEstudianteService {
+	
+	public Estudiante buscar(Integer id);
+
+	public void guardar(Estudiante estudiante);
+
+	public void actualizar(Estudiante estudiante);
+
+	public void eliminar(Integer id);
+
+}
