@@ -27,36 +27,39 @@ public class Pa2U3P5AsApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Factura fac = new Factura();
-		fac.setCedula("1752083905");
-		fac.setFecha(LocalDateTime.now());
-		fac.setNumero("0001-02569");
 		
-		DetalleFactura det1=new DetalleFactura();
-		det1.setCantidad(4);
-		det1.setCodigoBarras("54556875");
-		det1.setNombreProducto("coca cola");
-		det1.setFactura(fac);
 		
-		DetalleFactura det2=new DetalleFactura();
-		det2.setCantidad(2);
-		det2.setCodigoBarras("456456");
-		det2.setNombreProducto("leche vita");
-		det2.setFactura(fac);
+		System.out.println("Inner join");
+		List<Factura> list=this.facturaService.buscarInnerJoin();
+		for (Factura factura : list) {
+			System.out.println(factura);
+		}
 		
-		List<DetalleFactura> detalleFacturas= new ArrayList<>();
-		detalleFacturas.add(det1);
-		detalleFacturas.add(det2);
+		System.out.println("\nRight join");
+
+		List<Factura> list1=this.facturaService.buscarRightJoin();
+		for (Factura factura1 : list1) {
+			System.out.println(factura1.getNumero());
+		}
 		
-		fac.setDetalleFacturas(detalleFacturas);
 		
-		//this.facturaService.guardar(fac);
+		System.out.println("\nLeft join");
+
+		List<Factura> list2=this.facturaService.buscarLeftJoin();
+		for (Factura factura2 : list2) {
+			System.out.println(factura2.getNumero());
+		}
 		
-		Factura fact = this.facturaService.buscarPorNumero("0001-02569");
-		/*for (DetalleFactura detalleFactura : fact.getDetalleFacturas()) {
-			System.out.println(detalleFactura.getCodigoBarras());
-		}*/
-		System.out.println(fact);
+		System.out.println("\nFull join");
+
+		List<Factura> list3=this.facturaService.buscarLeftJoin();
+		for (Factura factura3 : list3) {
+			System.out.println(factura3);
+			for (DetalleFactura d : factura3.getDetalleFacturas()) {
+				System.out.println(d);
+			}
+		}
+		
 		
 	}
 
