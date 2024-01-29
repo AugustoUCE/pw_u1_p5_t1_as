@@ -1,5 +1,6 @@
 package com.example.demo.ventas.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,30 @@ public class FacturaServiceImpl implements IFacturaService {
 	public List<Factura> buscarLeftJoin() {
 		// TODO Auto-generated method stub
 		return this.facturaRepository.seleccionarLeftJoin();
+	}
+
+	@Override
+	public  Factura buscarInnerJoin(String numero) {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.seleccionarInnerJoin(numero);
+	}
+
+	@Override
+	public Factura buscarRightJoin(String cedula) {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.seleccionarRightJoin(cedula);
+	}
+
+	@Override
+	public Factura buscarLeftJoin(String cedula) {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.seleccionarLeftJoin(cedula);
+	}
+
+	@Override
+	public List<Factura> buscarFullJoin(LocalDateTime fecha) {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.seleccionarFullJoin(fecha);
 	}
 
 }

@@ -14,8 +14,8 @@ import com.example.demo.ventas.repository.modelo.Factura;
 import com.example.demo.ventas.service.IFacturaService;
 
 @SpringBootApplication
-public class Pa2U3P5AsApplication implements CommandLineRunner{
-	
+public class Pa2U3P5AsApplication implements CommandLineRunner {
+
 	@Autowired
 	private IFacturaService facturaService;
 
@@ -26,41 +26,28 @@ public class Pa2U3P5AsApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
-		
-		
+
 		System.out.println("Inner join");
-		List<Factura> list=this.facturaService.buscarInnerJoin();
-		for (Factura factura : list) {
-			System.out.println(factura);
-		}
-		
-		System.out.println("\nRight join");
+		Factura factura = this.facturaService.buscarInnerJoin("0001-02569");
+		System.out.println(factura);
 
-		List<Factura> list1=this.facturaService.buscarRightJoin();
-		for (Factura factura1 : list1) {
-			System.out.println(factura1.getNumero());
+		System.out.println("Right join");
+		Factura factura1 = this.facturaService.buscarRightJoin("1752083905");
+		System.out.println(factura1);
+		
+		System.out.println("Left join");
+		Factura factura2 = this.facturaService.buscarLeftJoin("1752083905");
+		System.out.println(factura2);
+		
+		System.out.println("Full join");
+		LocalDateTime fecha=LocalDateTime.of(2024, 1, 23, 20, 0);
+		List<Factura> list = this.facturaService.buscarFullJoin(fecha);
+		for (Factura factura5 : list) {
+			System.out.println(factura5);
 		}
 		
 		
-		System.out.println("\nLeft join");
 
-		List<Factura> list2=this.facturaService.buscarLeftJoin();
-		for (Factura factura2 : list2) {
-			System.out.println(factura2.getNumero());
-		}
-		
-		System.out.println("\nFull join");
-
-		List<Factura> list3=this.facturaService.buscarLeftJoin();
-		for (Factura factura3 : list3) {
-			System.out.println(factura3);
-			for (DetalleFactura d : factura3.getDetalleFacturas()) {
-				System.out.println(d);
-			}
-		}
-		
-		
 	}
 
 }

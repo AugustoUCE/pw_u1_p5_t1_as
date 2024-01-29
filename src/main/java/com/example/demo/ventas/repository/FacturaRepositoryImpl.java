@@ -1,5 +1,6 @@
 package com.example.demo.ventas.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -98,6 +99,64 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 		}
 		
 		return list3;
+	}
+
+	@Override
+	public Factura seleccionarInnerJoin(String numero) {
+		// TODO Auto-generated method stub
+		
+		String jpql="SELECT f FROM Factura f JOIN f.detalleFacturas d WHERE f.numero = :var";
+		
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery(jpql,Factura.class);
+		myQuery.setParameter("var", numero);
+		Factura factura4 = myQuery.getSingleResult();
+		
+		factura4.getDetalleFacturas().size();
+		
+		return factura4;
+	}
+
+	@Override
+	public Factura seleccionarRightJoin(String cedula) {
+		// TODO Auto-generated method stub
+		String jpql="SELECT f FROM Factura f RIGHT JOIN f.detalleFacturas d WHERE f.cedula = :var";
+		
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery(jpql,Factura.class);
+		myQuery.setParameter("var", cedula);
+		Factura factura4 = myQuery.getSingleResult();
+		
+		factura4.getDetalleFacturas().size();
+		
+		return factura4;
+	}
+
+	@Override
+	public Factura seleccionarLeftJoin(String cedula) {
+		// TODO Auto-generated method stub
+		String jpql="SELECT f FROM Factura f LEFT JOIN f.detalleFacturas d WHERE f.cedula = :var";
+		
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery(jpql,Factura.class);
+		myQuery.setParameter("var", cedula);
+		Factura factura4 = myQuery.getSingleResult();
+		
+		factura4.getDetalleFacturas().size();
+		
+		return factura4;
+	}
+
+	@Override
+	public List<Factura> seleccionarFullJoin(LocalDateTime fecha) {
+		// TODO Auto-generated method stub
+		String jpql="SELECT f FROM Factura f FULL JOIN f.detalleFacturas d WHERE f.fecha >=:var";
+		TypedQuery<Factura> myQuery=this.entityManager.createQuery(jpql,Factura.class);
+		myQuery.setParameter("var", fecha);
+		List<Factura> list6=myQuery.getResultList();
+		for (Factura factura6 : list6) {
+			factura6.getDetalleFacturas().size();
+			
+		}
+		
+		return list6;
 	}
 
 
