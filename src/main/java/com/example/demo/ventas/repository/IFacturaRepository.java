@@ -25,5 +25,11 @@ public interface IFacturaRepository {
 	public Factura seleccionarRightJoin(String cedula);
 	public Factura seleccionarLeftJoin(String cedula);
 	public List<Factura> seleccionarFullJoin(LocalDateTime fecha);
+	
+	//
+	
+	public List<Factura> seleccionarFacturaWhereJoin();
+
+	public List<Factura> seleccionarFacturasFetchJoin(); 
 
 }

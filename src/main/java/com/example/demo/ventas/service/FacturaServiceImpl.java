@@ -68,4 +68,16 @@ public class FacturaServiceImpl implements IFacturaService {
 		return this.facturaRepository.seleccionarFullJoin(fecha);
 	}
 
+	@Override
+	public List<Factura> buscarFacturaWhereJoin() {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.seleccionarFacturaWhereJoin();
+	}
+
+	@Override
+	public List<Factura> buscarFacturasFetchJoin() {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.seleccionarFacturasFetchJoin();
+	}
+
 }

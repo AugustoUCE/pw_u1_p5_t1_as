@@ -24,5 +24,9 @@ public interface IFacturaService {
 	public Factura  buscarRightJoin(String cedula);
 	public Factura  buscarLeftJoin(String cedula);
 	public List<Factura>  buscarFullJoin(LocalDateTime fecha);
+	//
+	
+	public List<Factura>  buscarFacturaWhereJoin();
+	public List<Factura>  buscarFacturasFetchJoin(); 
 
 }
